@@ -36,11 +36,11 @@ public class OpenAI implements IOpenAI {
 
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
         // 代理地址；open.aiproxy.xyz、open2.aiproxy.xyz
-        HttpPost post = new HttpPost("https://api.openai.com/v1/completions");
+        HttpPost post = new HttpPost("https://open.bigmodel.cn/api/paas/v4/chat/completions");
         post.addHeader("Content-Type", "application/json");
         post.addHeader("Authorization", "Bearer " + openAiKey);
 
-        String paramJson = "{\"model\": \"text-davinci-003\", \"prompt\": \"" + question + "\", \"temperature\": 0, \"max_tokens\": 1024}";
+        String paramJson = "{\"model\": \"glm-4\", \"messages\":  [{\"role\": \"user\", \"content\": \"" + question + "\"}]}";
 
         StringEntity stringEntity = new StringEntity(paramJson, ContentType.create("text/json", "UTF-8"));
         post.setEntity(stringEntity);
@@ -52,7 +52,8 @@ public class OpenAI implements IOpenAI {
             StringBuilder answers = new StringBuilder();
             List<Choices> choices = aiAnswer.getChoices();
             for (Choices choice : choices) {
-                answers.append(choice.getText());
+
+                answers.append(choice.getMessage().getContent());
             }
             return answers.toString();
         } else {
@@ -61,3 +62,37 @@ public class OpenAI implements IOpenAI {
     }
 
 }
+//public class OpenAI implements IOpenAI {
+//
+//    private Logger logger = LoggerFactory.getLogger(OpenAI.class);
+//
+//    @Override
+//    public String doChatGPT(String openAiKey, String question) throws IOException {
+//
+//        CloseableHttpClient httpClient = HttpClientBuilder.create().build();
+//        // 代理地址；open.aiproxy.xyz、open2.aiproxy.xyz
+//        HttpPost post = new HttpPost("https://api.openai.com/v1/completions");
+//        post.addHeader("Content-Type", "application/json");
+//        post.addHeader("Authorization", "Bearer " + openAiKey);
+//
+//        String paramJson = "{\"model\": \"text-davinci-003\", \"prompt\": \"" + question + "\", \"temperature\": 0, \"max_tokens\": 1024}";
+//
+//        StringEntity stringEntity = new StringEntity(paramJson, ContentType.create("text/json", "UTF-8"));
+//        post.setEntity(stringEntity);
+//
+//        CloseableHttpResponse response = httpClient.execute(post);
+//        if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+//            String jsonStr = EntityUtils.toString(response.getEntity());
+//            AIAnswer aiAnswer = JSON.parseObject(jsonStr, AIAnswer.class);
+//            StringBuilder answers = new StringBuilder();
+//            List<Choices> choices = aiAnswer.getChoices();
+//            for (Choices choice : choices) {
+//                answers.append(choice.getText());
+//            }
+//            return answers.toString();
+//        } else {
+//            throw new RuntimeException("api.openai.com Err Code is " + response.getStatusLine().getStatusCode());
+//        }
+//    }
+//
+//}

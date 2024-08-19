@@ -29,11 +29,11 @@ public class SpringBootRunTest {
 
     private Logger logger = LoggerFactory.getLogger(SpringBootRunTest.class);
 
-    @Value("${chatbot-api.group01.groupId}")
+    @Value("${chatbot-api.groupId}")
     private String groupId;
-    @Value("${chatbot-api.group01.cookie}")
+    @Value("${chatbot-api.cookie}")
     private String cookie;
-    @Value("${chatbot-api.group01.openAiKey}")
+    @Value("${chatbot-api.openAiKey}")
     private String openAiKey;
 
     @Resource

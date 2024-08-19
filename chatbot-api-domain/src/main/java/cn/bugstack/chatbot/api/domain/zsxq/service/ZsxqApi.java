@@ -37,7 +37,7 @@ public class ZsxqApi implements IZsxqApi {
     public UnAnsweredQuestionsAggregates queryUnAnsweredQuestionsTopicId(String groupId, String cookie) throws IOException {
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
 
-        HttpGet get = new HttpGet("https://api.zsxq.com/v2/groups/" + groupId + "/topics?scope=unanswered_questions&count=20");
+        HttpGet get = new HttpGet("https://api.zsxq.com/v2/groups/" + groupId + "/topics?scope=all&count=20");
 
         get.addHeader("cookie", cookie);
         get.addHeader("Content-Type", "application/json;charset=utf8");
@@ -57,7 +57,7 @@ public class ZsxqApi implements IZsxqApi {
 
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
 
-        HttpPost post = new HttpPost("https://api.zsxq.com/v2/topics/" + topicId + "/answer");
+        HttpPost post = new HttpPost("https://api.zsxq.com/v2/topics/" + topicId + "/comments");
         post.addHeader("cookie", cookie);
         post.addHeader("Content-Type", "application/json;charset=utf8");
         post.addHeader("user-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36");

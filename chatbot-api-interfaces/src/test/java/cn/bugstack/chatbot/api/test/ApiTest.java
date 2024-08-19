@@ -33,9 +33,9 @@ public class ApiTest {
     public void query_unanswered_questions() throws IOException {
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
 
-        HttpGet get = new HttpGet("https://api.zsxq.com/v2/groups/48411118851818/topics?scope=unanswered_questions&count=20");
+        HttpGet get = new HttpGet("https://api.zsxq.com/v2/groups/28885518425541/topics?scope=all&count=20");
 
-        get.addHeader("cookie", "知识星球个人cookie信息");
+        get.addHeader("cookie", "zsxq_access_token=BD7C796B-38D4-B0FF-B99F-D35364475045_2DF18B5D008E680C; zsxqsessionid=9cb6468704e374bc9468e4de1b6e6421; abtest_env=product; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%22585551148852144%22%2C%22first_id%22%3A%22190f3d01540115a-07632b55794af04-26001e51-1296000-190f3d0154111ae%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22identities%22%3A%22eyIkaWRlbnRpdHlfY29va2llX2lkIjoiMTkwZjNkMDE1NDAxMTVhLTA3NjMyYjU1Nzk0YWYwNC0yNjAwMWU1MS0xMjk2MDAwLTE5MGYzZDAxNTQxMTFhZSIsIiRpZGVudGl0eV9sb2dpbl9pZCI6IjU4NTU1MTE0ODg1MjE0NCJ9%22%2C%22history_login_id%22%3A%7B%22name%22%3A%22%24identity_login_id%22%2C%22value%22%3A%22585551148852144%22%7D%2C%22%24device_id%22%3A%22190f3d01540115a-07632b55794af04-26001e51-1296000-190f3d0154111ae%22%7D");
         get.addHeader("Content-Type", "application/json;charset=utf8");
 
         CloseableHttpResponse response = httpClient.execute(get);
@@ -51,13 +51,13 @@ public class ApiTest {
     public void answer() throws IOException {
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
 
-        HttpPost post = new HttpPost("https://api.zsxq.com/v2/topics/412884248251548/answer");
-        post.addHeader("cookie", "知识星球个人cookie信息");
+        HttpPost post = new HttpPost("https://api.zsxq.com/v2/topics/4844181548184188/comments");
+        post.addHeader("cookie", "zsxq_access_token=BD7C796B-38D4-B0FF-B99F-D35364475045_2DF18B5D008E680C; zsxqsessionid=9cb6468704e374bc9468e4de1b6e6421; abtest_env=product; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%22585551148852144%22%2C%22first_id%22%3A%22190f3d01540115a-07632b55794af04-26001e51-1296000-190f3d0154111ae%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22identities%22%3A%22eyIkaWRlbnRpdHlfY29va2llX2lkIjoiMTkwZjNkMDE1NDAxMTVhLTA3NjMyYjU1Nzk0YWYwNC0yNjAwMWU1MS0xMjk2MDAwLTE5MGYzZDAxNTQxMTFhZSIsIiRpZGVudGl0eV9sb2dpbl9pZCI6IjU4NTU1MTE0ODg1MjE0NCJ9%22%2C%22history_login_id%22%3A%7B%22name%22%3A%22%24identity_login_id%22%2C%22value%22%3A%22585551148852144%22%7D%2C%22%24device_id%22%3A%22190f3d01540115a-07632b55794af04-26001e51-1296000-190f3d0154111ae%22%7D");
         post.addHeader("Content-Type", "application/json;charset=utf8");
 
         String paramJson = "{\n" +
                 "  \"req_data\": {\n" +
-                "    \"text\": \"自己去百度！\\n\",\n" +
+                "    \"text\": \"不会！\\n\",\n" +
                 "    \"image_ids\": [],\n" +
                 "    \"silenced\": false\n" +
                 "  }\n" +
